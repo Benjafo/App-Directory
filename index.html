@@ -143,25 +143,25 @@
             transform: scaleX(1);
         }
 
-        .project-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
+        .backgammon-card svg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .project-card:hover .project-icon {
-            transform: rotate(5deg) scale(1.1);
+        .backgammon-card h2,
+        .backgammon-card p {
+            position: relative;
+            z-index: 1;
         }
 
         .project-card h2 {
             font-size: 1.5rem;
+            margin-top: 12px;
             margin-bottom: 12px;
             color: #f4f4f5;
             font-weight: 600;
@@ -169,7 +169,7 @@
 
         .project-card p {
             color: #a1a1aa;
-            margin-bottom: 0;
+            margin-bottom: 18px;
             font-size: 0.95rem;
             line-height: 1.6;
         }
@@ -250,16 +250,28 @@
 
     <div class="projects">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
+            <h2 class="section-title">Applications</h2>
             <div class="projects-grid">
-                <a href="https://backgammon.benjafo.com" class="project-card">
-                    <div class="project-icon">🎲</div>
+                <a href="https://backgammon.benjafo.com" class="project-card backgammon-card">
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+        <pattern id="backgammonPattern" x="0" y="0" width="30" height="200" patternUnits="userSpaceOnUse">
+            <!-- First pair - cyan top, purple bottom -->
+            <polygon points="0,0 7.5,52 15,0" fill="#06b6d4" opacity="0.10"/>
+            <polygon points="0,200 7.5,148 15,200" fill="#8b5cf6" opacity="0.10"/>
+            
+            <!-- Second pair - purple top, cyan bottom (alternating) -->
+            <polygon points="15,0 22.5,52 30,0" fill="#8b5cf6" opacity="0.10"/>
+            <polygon points="15,200 22.5,148 30,200" fill="#06b6d4" opacity="0.10"/>
+        </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#backgammonPattern)"/>
+</svg>
                     <h2>Backgammon</h2>
                     <p>Classic backgammon. Play with friends!</p>
                 </a>
 
                 <a href="https://project2.benjafo.com" class="project-card">
-                    <div class="project-icon">🚀</div>
                     <h2>Project 2</h2>
                     <p>Description of project 2 goes here.</p>
                 </a>
@@ -267,7 +279,6 @@
                 <!-- Add more project cards below as needed -->
                 <!--
                 <a href="https://project3.benjafo.com" class="project-card">
-                    <div class="project-icon">💡</div>
                     <h2>Your Next Project</h2>
                     <p>Description of your amazing project goes here.</p>
                 </a>
