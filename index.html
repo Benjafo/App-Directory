@@ -1,23 +1,296 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Projects</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benjafo</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; }
-        h1 { color: #333; }
-        .project { margin: 20px 0; padding: 15px; background: #f5f5f5; border-radius: 5px; }
-        a { color: #0066cc; text-decoration: none; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e4e4e7;
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #a1a1aa;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+            margin: 0 auto 40px;
+            border-radius: 2px;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        /* Projects Grid */
+        .projects {
+            padding: 0px 20px 40px;
+            flex: 1;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #f4f4f5;
+            font-weight: 600;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out backwards;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .backgammon-card svg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .backgammon-card h2,
+        .backgammon-card p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card h2 {
+            font-size: 1.5rem;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            color: #f4f4f5;
+            font-weight: 600;
+        }
+
+        .project-card p {
+            color: #a1a1aa;
+            margin-bottom: 18px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #71717a;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #8b5cf6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #06b6d4;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero {
+                padding: 60px 20px 40px;
+            }
+
+            .project-card {
+                padding: 24px;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>My Projects</h1>
-    <div class="project">
-        <h2><a href="https://backgammon.benjafo.com">Backgammon</a></h2>
-        <p>Description of backgammon</p>
+    <div class="hero">
+        <div class="container">
+            <h1>Ben Foley</h1>
+            <p>Full stack web developer</p>
+            <div class="divider"></div>
+        </div>
     </div>
-    <div class="project">
-        <h2><a href="https://project2.benjafo.com">Project 2</a></h2>
-        <p>Description of project 2</p>
+
+    <div class="projects">
+        <div class="container">
+            <h2 class="section-title">Applications</h2>
+            <div class="projects-grid">
+                <a href="https://backgammon.benjafo.com" class="project-card backgammon-card">
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <defs>
+        <pattern id="backgammonPattern" x="0" y="0" width="30" height="200" patternUnits="userSpaceOnUse">
+            <!-- First pair - cyan top, purple bottom -->
+            <polygon points="0,0 7.5,52 15,0" fill="#06b6d4" opacity="0.10"/>
+            <polygon points="0,200 7.5,148 15,200" fill="#8b5cf6" opacity="0.10"/>
+            
+            <!-- Second pair - purple top, cyan bottom (alternating) -->
+            <polygon points="15,0 22.5,52 30,0" fill="#8b5cf6" opacity="0.10"/>
+            <polygon points="15,200 22.5,148 30,200" fill="#06b6d4" opacity="0.10"/>
+        </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#backgammonPattern)"/>
+</svg>
+                    <h2>Backgammon</h2>
+                    <p>Classic backgammon. Play with friends!</p>
+                </a>
+
+                <a href="https://project2.benjafo.com" class="project-card">
+                    <h2>Project 2</h2>
+                    <p>Description of project 2 goes here.</p>
+                </a>
+
+                <!-- Add more project cards below as needed -->
+                <!--
+                <a href="https://project3.benjafo.com" class="project-card">
+                    <h2>Your Next Project</h2>
+                    <p>Description of your amazing project goes here.</p>
+                </a>
+                -->
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2025 Ben Foley. All rights reserved.</p>
+        </div>
     </div>
 </body>
 </html>
