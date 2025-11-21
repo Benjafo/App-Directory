@@ -1,14 +1,13 @@
 networks:
   web:
     external: true
-
 services:
   landing:
     image: nginx:alpine
     container_name: landing
     restart: unless-stopped
     volumes:
-      - ./index.html:/usr/share/nginx/html/index.html
+      - .:/usr/share/nginx/html
     networks:
       - web
     labels:
@@ -16,4 +15,3 @@ services:
       - "traefik.http.routers.landing.rule=Host(`benjafo.com`)"
       - "traefik.http.routers.landing.entrypoints=websecure"
       - "traefik.http.routers.landing.tls.certresolver=letsencrypt"
-      - "traefik.docker.network=web"
