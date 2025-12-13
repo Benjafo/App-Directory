@@ -78,9 +78,82 @@
                     <p>Classic backgammon. Play with friends!</p>
                 </a>
 
-                <a href="https://project2.benjafo.com" class="project-card">
-                    <h2>Project 2</h2>
-                    <p>Description of project 2 goes here.</p>
+                <a href="https://github.com/Benjafo/TimeClock" class="project-card timeclock-card" target="_blank">
+                    <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                        <defs>
+                            <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#1a365d"/>
+                                <stop offset="50%" style="stop-color:#2c5282"/>
+                                <stop offset="100%" style="stop-color:#2b6cb0"/>
+                            </linearGradient>
+                            <pattern id="gridPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                            </pattern>
+                            <radialGradient id="clockFace" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" style="stop-color:#f7fafc"/>
+                                <stop offset="85%" style="stop-color:#e2e8f0"/>
+                                <stop offset="100%" style="stop-color:#cbd5e0"/>
+                            </radialGradient>
+                            <radialGradient id="clockInner" cx="50%" cy="30%" r="60%">
+                                <stop offset="0%" style="stop-color:#ffffff"/>
+                                <stop offset="100%" style="stop-color:#e2e8f0"/>
+                            </radialGradient>
+                            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                            <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#1a365d" flood-opacity="0.4"/>
+                            </filter>
+                        </defs>
+
+                        <rect width="400" height="180" fill="url(#bgGradient)"/>
+                        <rect width="400" height="180" fill="url(#gridPattern)"/>
+
+                        <circle cx="205" cy="35" r="60" fill="rgba(255,255,255,0.03)"/>
+                        <circle cx="380" cy="150" r="80" fill="rgba(255,255,255,0.03)"/>
+                        <circle cx="350" cy="20" r="40" fill="rgba(255,255,255,0.02)"/>
+
+                        <!-- Floating time blocks - right of center -->
+                        <g opacity="0.5">
+                            <rect x="185" y="15" width="50" height="10" rx="2" fill="#4299e1"/>
+                            <rect x="185" y="30" width="35" height="10" rx="2" fill="#63b3ed"/>
+                            <rect x="185" y="45" width="45" height="10" rx="2" fill="#90cdf4"/>
+                        </g>
+
+                        <!-- Clock moved to right side, smaller -->
+                        <g transform="translate(330, 90)" filter="url(#softShadow)">
+                            <circle cx="0" cy="0" r="42" fill="url(#clockFace)" stroke="#a0aec0" stroke-width="2"/>
+                            <circle cx="0" cy="0" r="36" fill="url(#clockInner)"/>
+                            <g stroke="#2d3748" stroke-width="2" stroke-linecap="round">
+                                <line x1="0" y1="-30" x2="0" y2="-25"/>
+                                <line x1="15" y1="-26" x2="13" y2="-22"/>
+                                <line x1="26" y1="-15" x2="22" y2="-13"/>
+                                <line x1="30" y1="0" x2="25" y2="0"/>
+                                <line x1="26" y1="15" x2="22" y2="13"/>
+                                <line x1="15" y1="26" x2="13" y2="22"/>
+                                <line x1="0" y1="30" x2="0" y2="25"/>
+                                <line x1="-15" y1="26" x2="-13" y2="22"/>
+                                <line x1="-26" y1="15" x2="-22" y2="13"/>
+                                <line x1="-30" y1="0" x2="-25" y2="0"/>
+                                <line x1="-26" y1="-15" x2="-22" y2="-13"/>
+                                <line x1="-15" y1="-26" x2="-13" y2="-22"/>
+                            </g>
+                            <line x1="0" y1="5" x2="-10" y2="-12" stroke="#1a202c" stroke-width="3" stroke-linecap="round"/>
+                            <line x1="0" y1="6" x2="5" y2="-20" stroke="#2d3748" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="0" y1="9" x2="0" y2="-25" stroke="#e53e3e" stroke-width="1.5" stroke-linecap="round" filter="url(#glow)"/>
+                            <circle cx="0" cy="0" r="3" fill="#1a202c"/>
+                            <circle cx="0" cy="0" r="1.5" fill="#e53e3e"/>
+                        </g>
+
+                        <circle cx="245" cy="50" r="3" fill="#4299e1" opacity="0.8"/>
+                        <circle cx="260" cy="60" r="2" fill="#63b3ed" opacity="0.6"/>
+                    </svg>
+                    <h2>Time Clock</h2>
+                    <p>Discord bot for tracking time spent on projects with admin management features.</p>
                 </a>
 
                 <!-- Add more project cards below as needed -->
