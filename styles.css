@@ -40,7 +40,11 @@ body {
 
 .nav a:hover {
     color: #06b6d4;
-    transform: scale(1.05);
+}
+
+.nav a.active {
+    color: #06b6d4;
+    font-weight: 600;
 }
 
 /* CTA Button */
@@ -250,10 +254,17 @@ body {
     z-index: 1;
 }
 
+.project-card.backgammon-card h2 {
+    color: #3d2317;
+}
+
+.project-card.backgammon-card p {
+    color: #5c3d2e;
+}
+
 .project-card h2 {
     font-size: 1.5rem;
     margin-top: 12px;
-    margin-bottom: 12px;
     color: #f4f4f5;
     font-weight: 600;
 }
