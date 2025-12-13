@@ -40,6 +40,7 @@ body {
 
 .nav a:hover {
     color: #06b6d4;
+    transform: scale(1.05);
 }
 
 /* CTA Button */
