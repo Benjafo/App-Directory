@@ -8,6 +8,7 @@
 </head>
 <body>
     <nav class="nav">
+        <a href="index.html" class="active">Home</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
     </nav>
@@ -16,8 +17,41 @@
         <div class="container">
             <h1>Ben Foley</h1>
             <p>Full stack web developer</p>
-            <a href="build.html" class="cta-button">Want an app built?</a>
-            <div class="divider"></div>
+        </div>
+    </div>
+
+    <div class="services">
+        <div class="container">
+            <h2 class="section-title">What I Do</h2>
+            <div class="services-content">
+                <p class="services-intro">
+                    I build complete web applications effectively, from concept to deployment. I specialize in React, Node.js, Python/Django, PostgreSQL, and Docker, but I'm adaptable - I'll recommend and use whatever technology best fits your project's needs.
+                </p>
+
+                <div class="services-grid">
+                    <div class="service-item service-item-cyan">
+                        <h4>Custom Web Applications</h4>
+                        <p>Production grade interactive tools, dashboards, SaaS products, and business applications.</p>
+                    </div>
+                    <div class="service-item service-item-purple">
+                        <h4>End-to-End Development</h4>
+                        <p>Frontend, backend, database design, and deployment are covered, I handle the complete solution.</p>
+                    </div>
+                    <div class="service-item service-item-cyan">
+                        <h4>Deployment & Maintenance</h4>
+                        <p>Modern DevOps practices ensure your application is deployed reliably and scales as your needs evolve.</p>
+                    </div>
+                </div>
+
+                <h2 class="section-title">How We'll Work Together</h2>
+                <p class="services-process">
+                    We'll start by discussing your goals and requirements. I'll outline a technical approach and timeline, then build your application with regular updates. Once deployed, I'm available for ongoing support and improvements as your needs change.
+                </p>
+
+                <div class="services-cta">
+                    <a href="contact.html" class="cta-button">Get In Touch</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -28,13 +62,14 @@
                 <a href="https://backgammon.benjafo.com" class="project-card backgammon-card">
                     <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                         <defs>
-                            <pattern id="backgammonPattern" x="0" y="0" width="30" height="200" patternUnits="userSpaceOnUse">
-                                <!-- First pair - cyan top, purple bottom -->
-                                <polygon points="0,0 7.5,52 15,0" fill="#06b6d4" opacity="0.10"/>
-                                <polygon points="0,200 7.5,148 15,200" fill="#8b5cf6" opacity="0.10"/>
-                                <!-- Second pair - purple top, cyan bottom -->
-                                <polygon points="15,0 22.5,52 30,0" fill="#8b5cf6" opacity="0.10"/>
-                                <polygon points="15,200 22.5,148 30,200" fill="#06b6d4" opacity="0.10"/>
+                            <pattern id="backgammonPattern" x="0" y="0" width="20" height="200" patternUnits="userSpaceOnUse">
+                                <rect width="20" height="200" fill="#f0bf7c"/>
+                                <!-- First pair -->
+                                <polygon points="0,0 5,52 10,0" fill="#ac6449"/>
+                                <polygon points="0,200 5,148 10,200" fill="#6d4944"/>
+                                <!-- Second pair -->
+                                <polygon points="10,0 15,52 20,0" fill="#6d4944"/>
+                                <polygon points="10,200 15,148 20,200" fill="#ac6449"/>
                             </pattern>
                         </defs>
                         <rect width="100%" height="100%" fill="url(#backgammonPattern)"/>
