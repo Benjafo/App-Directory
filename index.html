@@ -66,8 +66,22 @@
                                 <stop offset="0%" style="stop-color:#F4F1EA"/>
                                 <stop offset="100%" style="stop-color:#E8E0D0"/>
                             </linearGradient>
+                            <filter id="paperTexture" x="0%" y="0%" width="100%" height="100%">
+                                <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise"/>
+                                <feDiffuseLighting in="noise" lighting-color="#F5EDDA" surfaceScale="1.2">
+                                    <feDistantLight azimuth="45" elevation="55"/>
+                                </feDiffuseLighting>
+                            </filter>
                         </defs>
                         <rect width="100%" height="100%" fill="url(#ancestryBg)"/>
+                        <!-- Paper texture overlay -->
+                        <rect width="100%" height="100%" filter="url(#paperTexture)" opacity="0.35"/>
+                        <!-- Decorative roots at bottom -->
+                        <g stroke="#A67C52" fill="none" stroke-linecap="round" opacity="0.25">
+                            <path d="M-10 200 Q30 185 60 195 Q90 205 120 190 Q150 175 180 188" stroke-width="3"/>
+                            <path d="M50 200 Q80 190 110 198 Q140 206 170 195 Q200 184 230 192" stroke-width="2"/>
+                            <path d="M140 200 Q170 192 200 200 Q230 208 260 198 Q290 188 330 195" stroke-width="2.5"/>
+                        </g>
                         <!-- Tree positioned on right side -->
                         <g transform="translate(80, 0)">
                             <!-- Main trunk -->
@@ -86,7 +100,7 @@
                         </g>
                     </svg>
                     <h2>Atlas Ancestry</h2>
-                    <p>Connect with professional geneologists to discover your family history.</p>
+                    <p>Connect with geneologists to discover your family history.</p>
                 </a>
 
                 <a href="https://backgammon.benjafo.com" class="project-card backgammon-card" target="_blank">
@@ -183,7 +197,7 @@
                         <circle cx="260" cy="60" r="2" fill="#63b3ed" opacity="0.6"/>
                     </svg>
                     <h2>Time Clock</h2>
-                    <p>Discord bot for tracking time spent on projects with admin management features.</p>
+                    <p>Discord bot for tracking time spent on projects.</p>
                 </a>
 
                 <!-- Add more project cards below as needed -->
