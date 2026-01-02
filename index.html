@@ -25,7 +25,7 @@
             <h2 class="section-title">What I Do</h2>
             <div class="services-content">
                 <p class="services-intro">
-                    I build complete web applications effectively, from concept to deployment. I specialize in React, Node.js, Python/Django, PostgreSQL, and Docker, but I'm adaptable - I'll recommend and use whatever technology best fits your project's needs.
+                    I build complete web applications effectively, from concept to deployment. I specialize in React, Node.js, PostgreSQL, and Docker, but I'm adaptable - I'll recommend and use whatever technology best fits your project's needs.
                 </p>
 
                 <div class="services-grid">
@@ -59,17 +59,47 @@
         <div class="container">
             <h2 class="section-title">Applications</h2>
             <div class="projects-grid">
-                <a href="https://backgammon.benjafo.com" class="project-card backgammon-card">
+                <a href="https://ancestry.benjafo.com" class="project-card ancestry-card" target="_blank">
                     <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                         <defs>
-                            <pattern id="backgammonPattern" x="0" y="0" width="20" height="200" patternUnits="userSpaceOnUse">
-                                <rect width="20" height="200" fill="#f0bf7c"/>
+                            <linearGradient id="ancestryBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#F4F1EA"/>
+                                <stop offset="100%" style="stop-color:#E8E0D0"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#ancestryBg)"/>
+                        <!-- Tree positioned on right side -->
+                        <g transform="translate(80, 0)">
+                            <!-- Main trunk -->
+                            <path d="M260 220 Q260 160 245 130 Q230 100 215 80" stroke="#8B6B4C" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.7"/>
+                            <path d="M260 220 Q260 160 275 130 Q290 100 305 80" stroke="#8B6B4C" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.7"/>
+                            <!-- Branches -->
+                            <path d="M215 80 Q200 60 185 50" stroke="#A67C52" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.6"/>
+                            <path d="M215 80 Q220 55 230 35" stroke="#A67C52" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.6"/>
+                            <path d="M305 80 Q315 55 310 35" stroke="#A67C52" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.6"/>
+                            <!-- Leaves/nodes -->
+                            <circle cx="185" cy="50" r="10" fill="#6B7C5F" opacity="0.6"/>
+                            <circle cx="230" cy="35" r="8" fill="#7A8B6E" opacity="0.6"/>
+                            <circle cx="310" cy="35" r="9" fill="#6B7C5F" opacity="0.6"/>
+                            <circle cx="200" cy="68" r="6" fill="#8A9B7E" opacity="0.5"/>
+                            <circle cx="295" cy="60" r="7" fill="#8A9B7E" opacity="0.5"/>
+                        </g>
+                    </svg>
+                    <h2>Atlas Ancestry</h2>
+                    <p>Connect with professional geneologists to discover your family history.</p>
+                </a>
+
+                <a href="https://backgammon.benjafo.com" class="project-card backgammon-card" target="_blank">
+                    <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                        <defs>
+                            <pattern id="backgammonPattern" x="0" y="0" width="26.67" height="200" patternUnits="userSpaceOnUse">
+                                <rect width="26.67" height="200" fill="#f0bf7c"/>
                                 <!-- First pair -->
-                                <polygon points="0,0 5,52 10,0" fill="#ac6449"/>
-                                <polygon points="0,200 5,148 10,200" fill="#6d4944"/>
+                                <polygon points="0,0 6.67,52 13.33,0" fill="#ac6449"/>
+                                <polygon points="0,200 6.67,148 13.33,200" fill="#6d4944"/>
                                 <!-- Second pair -->
-                                <polygon points="10,0 15,52 20,0" fill="#6d4944"/>
-                                <polygon points="10,200 15,148 20,200" fill="#ac6449"/>
+                                <polygon points="13.33,0 20,52 26.67,0" fill="#6d4944"/>
+                                <polygon points="13.33,200 20,148 26.67,200" fill="#ac6449"/>
                             </pattern>
                         </defs>
                         <rect width="100%" height="100%" fill="url(#backgammonPattern)"/>
@@ -125,7 +155,7 @@
                         </g>
 
                         <!-- Clock moved to right side, smaller -->
-                        <g transform="translate(330, 90)" filter="url(#softShadow)">
+                        <g transform="translate(315, 90)" filter="url(#softShadow)">
                             <circle cx="0" cy="0" r="42" fill="url(#clockFace)" stroke="#a0aec0" stroke-width="2"/>
                             <circle cx="0" cy="0" r="36" fill="url(#clockInner)"/>
                             <g stroke="#2d3748" stroke-width="2" stroke-linecap="round">
