@@ -342,7 +342,7 @@ body {
 .transfleet-card p {
     position: relative;
     z-index: 1;
-    max-width: 65%;
+    max-width: 80%;
 }
 
 .project-card.transfleet-card h2 {
