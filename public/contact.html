@@ -24,23 +24,49 @@
 
     <div class="projects">
         <div class="container">
-            <div style="max-width: 700px; margin: 0 auto; text-align: center;">
-                <p class="contact-text">
-                    Have a project in mind? Send me an email describing what you're looking to build, your timeline, and any specific requirements. I typically respond within 24 hours to discuss next steps.
-                </p>
+            <div class="contact-wrap">
+                <h2 class="contact-heading">Just reach out. It's that easy.</h2>
+                <p class="contact-subtext">Fill in the blanks and I'll reply within 24 hours.</p>
 
-                <p class="contact-subtext">
-                    Prefer to connect on LinkedIn or check out my code on GitHub? You can find me there too.
-                </p>
+                <form id="contact-form" class="contact-form" action="/api/contact" method="POST">
+                    <p class="contact-sentence">
+                        Hi Ben, I'm
+                        <input type="text" name="name" placeholder="your name" aria-label="Your name" autocomplete="name" maxlength="100" required>
+                        and I'd love to talk about
+                        <input type="text" name="topic" placeholder="a project idea" aria-label="What you'd like to talk about" maxlength="200" required>.
+                        You can reach me at
+                        <input type="email" name="email" placeholder="you@example.com" aria-label="Your email" autocomplete="email" maxlength="254" required>.
+                    </p>
 
-                <div style="margin-top: 60px; margin-bottom: 32px;">
-                    <div class="contact-links">
-                        <a href="mailto:benjafo@gmail.com" class="email-link">benjafo@gmail.com</a>
-                        <span class="separator">|</span>
-                        <a href="https://github.com/Benjafo" target="_blank">GitHub</a>
-                        <span class="separator">|</span>
-                        <a href="https://www.linkedin.com/in/benfoley9895/" target="_blank">LinkedIn</a>
+                    <textarea name="message" rows="4" maxlength="5000" placeholder="Anything else? (optional)" aria-label="Anything else (optional)"></textarea>
+
+                    <div class="hp" aria-hidden="true">
+                        <label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
                     </div>
+
+                    <div class="contact-actions">
+                        <p class="form-status" role="status" aria-live="polite"></p>
+                        <button type="submit" class="cta-button">Send it &rarr;</button>
+                    </div>
+                </form>
+
+                <div id="sent" class="form-result">
+                    <h3>Sent. Thanks!</h3>
+                    <p>I'll get back to you <span class="sent-to">soon</span>.</p>
+                </div>
+
+                <div id="send-error" class="form-result">
+                    <h3>That didn't go through.</h3>
+                    <p>Sorry about that. Please email me directly at <a href="mailto:contact@benjafo.com">contact@benjafo.com</a>.</p>
+                </div>
+
+                <div class="contact-links contact-fallback">
+                    <span>Rather use email?</span>
+                    <a href="mailto:contact@benjafo.com" class="email-link">contact@benjafo.com</a>
+                    <span class="separator">|</span>
+                    <a href="https://github.com/Benjafo" target="_blank">GitHub</a>
+                    <span class="separator">|</span>
+                    <a href="https://www.linkedin.com/in/benfoley9895/" target="_blank">LinkedIn</a>
                 </div>
             </div>
         </div>
@@ -51,5 +77,6 @@
             <p>&copy; 2025 Ben Foley. All rights reserved.</p>
         </div>
     </div>
+    <script src="contact.js" defer></script>
 </body>
 </html>
