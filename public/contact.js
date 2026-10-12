@@ -4,6 +4,33 @@ const form = document.getElementById('contact-form');
 const statusEl = form.querySelector('.form-status');
 const button = form.querySelector('button[type="submit"]');
 
+// Size each blank to its placeholder, growing only once the typed text is wider.
+const blanks = form.querySelectorAll('.contact-sentence input');
+const measure = document.createElement('canvas').getContext('2d');
+
+function textWidth(text, style, fontStyle) {
+    measure.font = `${fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+    return measure.measureText(text).width;
+}
+
+function fitBlank(input) {
+    const style = getComputedStyle(input);
+    // Placeholders are italic (see .contact-sentence input::placeholder)
+    const placeholder = textWidth(input.placeholder, style, 'italic');
+    const value = textWidth(input.value, style, style.fontStyle);
+    const padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+    input.style.width = `${Math.ceil(Math.max(placeholder, value) + padding) + 2}px`;
+}
+
+function fitAll() {
+    blanks.forEach(fitBlank);
+}
+
+blanks.forEach((input) => input.addEventListener('input', () => fitBlank(input)));
+window.addEventListener('resize', fitAll);
+document.fonts.ready.then(fitAll);
+fitAll();
+
 function showResult(id) {
     form.hidden = true;
     document.getElementById(id).classList.add('is-visible');
