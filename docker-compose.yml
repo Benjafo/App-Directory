@@ -19,3 +19,18 @@ services:
       - "traefik.http.middlewares.www-to-apex.redirectregex.regex=^https?://www\\.benjafo\\.com/(.*)"
       - "traefik.http.middlewares.www-to-apex.redirectregex.replacement=https://benjafo.com/$${1}"
       - "traefik.http.middlewares.www-to-apex.redirectregex.permanent=true"
+  mailer:
+    build: ./mailer
+    container_name: mailer
+    restart: unless-stopped
+    env_file: .env
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.contact-api.rule=Host(`benjafo.com`) && Path(`/api/contact`)"
+      # Explicit priority: Traefik defaults to rule length, and the landing rule is longer
+      - "traefik.http.routers.contact-api.priority=100"
+      - "traefik.http.routers.contact-api.entrypoints=websecure"
+      - "traefik.http.routers.contact-api.tls.certresolver=letsencrypt"
+      - "traefik.http.services.contact-api.loadbalancer.server.port=3000"
