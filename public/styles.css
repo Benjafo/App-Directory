@@ -282,6 +282,7 @@ body > * {
 .project-card:nth-child(2) { animation-delay: 0.2s; }
 .project-card:nth-child(3) { animation-delay: 0.3s; }
 .project-card:nth-child(4) { animation-delay: 0.4s; }
+.project-card:nth-child(5) { animation-delay: 0.5s; }
 
 .project-card::before {
     content: '';
@@ -397,6 +398,84 @@ body > * {
 
 .project-card.transfleet-card p {
     color: #92400e;
+}
+
+/* Joint Liability — in-game key art under the dealer's spotlight,
+   lettered like the game's bulb-gold marquee with its red neon bar */
+.project-card.jl-card {
+    background: #120c08;
+}
+
+.jl-card .jl-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 72% 30%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* smoky scrim so the title reads against the wall, fading out before the dealer */
+.jl-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        linear-gradient(100deg, rgba(12, 7, 4, 0.88) 0%, rgba(12, 7, 4, 0.62) 34%, rgba(12, 7, 4, 0) 66%),
+        radial-gradient(120% 90% at 74% 30%, transparent 55%, rgba(7, 9, 7, 0.55) 100%);
+}
+
+.jl-card::before {
+    display: none;
+}
+
+.jl-card h2,
+.jl-card p {
+    position: relative;
+    z-index: 1;
+    max-width: 65%;
+}
+
+/* text sits top-left; the h2's top margin moves under the p so the
+   card keeps the same height as its neighbours */
+.project-card.jl-card h2 {
+    margin-top: -8px;
+    color: #ffc832;
+    text-shadow:
+        0 0 0.4em rgba(255, 200, 50, 0.35),
+        0.06em 0.06em 0 #7a1710,
+        0.12em 0.12em 0 #070907;
+}
+
+.project-card.jl-card p {
+    margin-bottom: 50px;
+    color: #f1e4cf;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.project-card.jl-card:hover {
+    background: #120c08;
+}
+
+/* the sign stutters on, like a neon tube catching */
+.jl-card:hover h2 {
+    animation: jlFlicker 0.9s steps(1, end) 1;
+}
+
+@keyframes jlFlicker {
+    0%, 100% { opacity: 1; }
+    10% { opacity: 0.35; }
+    16% { opacity: 1; }
+    30% { opacity: 0.5; }
+    34% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .jl-card:hover h2 { animation: none; }
 }
 
 .project-card h2 {
