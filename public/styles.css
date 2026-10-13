@@ -457,7 +457,7 @@ p:last-child { margin-bottom: 0; }
 .contact-form[hidden] { display: none; }
 
 .form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem 1.25rem; }
-.field { display: grid; gap: 0.5rem; min-width: 0; margin: 0; padding: 0; border: 0; }
+.field { display: grid; gap: 0.5rem; align-content: start; min-width: 0; margin: 0; padding: 0; border: 0; }
 .field > label,
 .field > legend { padding: 0; color: var(--ink); font-size: var(--fs-sm); font-weight: 500; }
 fieldset.field > legend { margin-bottom: 0.625rem; }
