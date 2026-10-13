@@ -1,44 +1,71 @@
 // Submits the contact form in place. Without JS the form still posts normally
-// and the server redirects back to #sent or #send-error.
+// (with the browser's own required-field checks) and the server redirects back
+// to #sent or #send-error.
 const form = document.getElementById('contact-form');
 const statusEl = form.querySelector('.form-status');
 const button = form.querySelector('button[type="submit"]');
+const buttonLabel = button.innerHTML;
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// Size each blank to its placeholder, growing only once the typed text is wider.
-const blanks = form.querySelectorAll('.contact-sentence input');
-const measure = document.createElement('canvas').getContext('2d');
+// Inline messages replace the browser's validation bubbles once JS is running.
+form.noValidate = true;
 
-function textWidth(text, style, fontWeight) {
-    measure.font = `${style.fontStyle} ${fontWeight} ${style.fontSize} ${style.fontFamily}`;
-    return measure.measureText(text).width;
+function clearError(field) {
+    const error = document.getElementById(`${field.id}-error`);
+    if (!error) return;
+    error.remove();
+    field.removeAttribute('aria-invalid');
+    const describedBy = field.dataset.describedby;
+    if (describedBy) field.setAttribute('aria-describedby', describedBy);
+    else field.removeAttribute('aria-describedby');
 }
 
-function fitBlank(input) {
-    const style = getComputedStyle(input);
-    // Placeholders are set lighter than typed text (see .contact-sentence input::placeholder)
-    const placeholder = textWidth(input.placeholder, style, 500);
-    const value = textWidth(input.value, style, style.fontWeight);
-    const padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
-    input.style.width = `${Math.ceil(Math.max(placeholder, value) + padding) + 2}px`;
+function showError(field, message) {
+    const error = document.createElement('p');
+    error.className = 'field-error';
+    error.id = `${field.id}-error`;
+    error.textContent = message;
+    field.after(error);
+    field.dataset.describedby = field.getAttribute('aria-describedby') || '';
+    field.setAttribute('aria-invalid', 'true');
+    field.setAttribute('aria-describedby', `${field.dataset.describedby} ${error.id}`.trim());
 }
 
-function fitAll() {
-    blanks.forEach(fitBlank);
+function validate() {
+    const { name, email, message } = form.elements;
+    [name, email, message].forEach(clearError);
+
+    if (!name.value.trim()) showError(name, 'Please enter your name.');
+    if (!email.value.trim()) showError(email, 'Please enter your email address.');
+    else if (!EMAIL.test(email.value.trim())) showError(email, 'Please enter a valid email address, like name@company.com.');
+    if (!message.value.trim()) showError(message, 'Please add a short overview of your project.');
+
+    return form.querySelector('[aria-invalid="true"]');
 }
 
-blanks.forEach((input) => input.addEventListener('input', () => fitBlank(input)));
-window.addEventListener('resize', fitAll);
-document.fonts.ready.then(fitAll);
-fitAll();
+// Clear a field's message as soon as it's corrected.
+form.addEventListener('input', (event) => {
+    if (event.target.getAttribute('aria-invalid') === 'true') clearError(event.target);
+});
 
 function showResult(id) {
     form.hidden = true;
-    document.getElementById(id).classList.add('is-visible');
+    const result = document.getElementById(id);
+    result.classList.add('is-visible');
+    result.setAttribute('tabindex', '-1');
+    result.focus();
 }
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
     statusEl.textContent = '';
+
+    const invalid = validate();
+    if (invalid) {
+        invalid.focus();
+        return;
+    }
+
     button.disabled = true;
     button.textContent = 'Sending…';
 
@@ -53,7 +80,8 @@ form.addEventListener('submit', async (event) => {
         const result = await res.json().catch(() => ({}));
 
         if (result.ok) {
-            document.querySelector('#sent .sent-to').textContent = `at ${data.get('email')} soon`;
+            document.querySelector('#sent .sent-name').textContent = `, ${data.get('name').trim()}`;
+            document.querySelector('#sent .sent-to').textContent = ` to ${data.get('email').trim()}`;
             showResult('sent');
         } else if (res.status === 400 || res.status === 413 || res.status === 429) {
             statusEl.textContent = result.error;
@@ -64,6 +92,6 @@ form.addEventListener('submit', async (event) => {
         showResult('send-error');
     } finally {
         button.disabled = false;
-        button.textContent = 'Send it →';
+        button.innerHTML = buttonLabel;
     }
 });

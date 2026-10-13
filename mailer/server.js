@@ -23,7 +23,7 @@ const AUTH = 'Zoho-enczapikey ' + ZEPTO_TOKEN.replace(/^Zoho-enczapikey\s+/, '')
 const RECIPIENTS = MAIL_TO.split(',').map((a) => a.trim()).filter(Boolean);
 
 const MAX_BODY = 16 * 1024;
-const LIMITS = { name: 100, topic: 200, email: 254, message: 5000 };
+const LIMITS = { name: 100, email: 254, company: 100, topic: 200, message: 5000 };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Per-IP rate limit, in memory: RATE_MAX submissions per RATE_WINDOW.
@@ -77,12 +77,13 @@ function oneLine(value) {
 function validate(params) {
     const fields = {
         name: oneLine(params.get('name') || ''),
-        topic: oneLine(params.get('topic') || ''),
         email: oneLine(params.get('email') || ''),
+        company: oneLine(params.get('company') || ''),
+        topic: oneLine(params.get('topic') || ''),
         message: (params.get('message') || '').trim(),
     };
-    if (!fields.name || !fields.topic || !fields.email) {
-        return { error: 'Please fill in your name, topic, and email.' };
+    if (!fields.name || !fields.email || !fields.message) {
+        return { error: 'Please fill in your name, email, and project details.' };
     }
     if (!EMAIL_RE.test(fields.email)) {
         return { error: 'That email address doesn\'t look right.' };
@@ -93,14 +94,17 @@ function validate(params) {
     return { fields };
 }
 
-async function send({ name, topic, email, message }) {
-    const subject = `New inquiry from ${name}: ${topic}`.slice(0, 200);
+async function send({ name, email, company, topic, message }) {
+    const from = company ? `${name} (${company})` : name;
+    const subject = (topic ? `Inquiry from ${from}: ${topic}` : `Inquiry from ${from}`).slice(0, 200);
     const textbody = [
-        `Name:  ${name}`,
-        `Email: ${email}`,
-        `Topic: ${topic}`,
+        `Name:    ${name}`,
+        `Email:   ${email}`,
+        `Company: ${company || '-'}`,
+        `Type:    ${topic || '-'}`,
         '',
-        message || '(no message)',
+        'Project details:',
+        message,
     ].join('\n');
 
     const res = await fetch(`${ZEPTO_API_URL}/v1.1/email`, {
