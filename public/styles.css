@@ -677,3 +677,13 @@ p:last-child { margin-bottom: 0; }
     .jl-card h3,
     .jl-card p { max-width: none; }
 }
+
+/* Contrast: the hero sits on a full-bleed sand band, so Applications opens on cream */
+.hero {
+    background: var(--sand);
+    box-shadow: 0 0 0 100vmax var(--sand);
+    /* 1px overlap below hides a hairline seam at the band's full-bleed edges */
+    clip-path: inset(0 -100vmax -1px);
+}
+.section--ruled { padding-top: var(--section-y); }
+.section--ruled > .wrap::before { content: none; }
