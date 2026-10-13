@@ -1,33 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Benjafo</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Contact — Ben Foley</title>
+    <meta name="description" content="Get in touch with Ben Foley about your web application project. Fill in the blanks and get a reply within 24 hours.">
+    <meta name="theme-color" content="#fbf7f1">
+    <link rel="preload" href="fonts/inter-700.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="contact.html" class="active">Contact</a>
-    </nav>
-
-    <div class="hero">
-        <div class="container">
-            <h1>Get In Touch</h1>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="wrap site-header__inner">
+            <a class="site-header__brand" href="index.html">Ben Foley</a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html" aria-current="page">Contact</a>
+            </nav>
         </div>
-    </div>
+    </header>
 
-    <div class="projects">
-        <div class="container">
+    <main id="main">
+        <section class="wrap page-head" aria-labelledby="page-title">
+            <p class="label">Contact</p>
+            <h1 id="page-title" class="page-head__title">Just reach out. It's that easy.</h1>
+            <p class="page-head__lead">Fill in the blanks and I'll reply within 24 hours.</p>
+        </section>
+
+        <section class="wrap contact-section" aria-label="Contact form">
             <div class="contact-wrap">
-                <h2 class="contact-heading">Just reach out. It's that easy.</h2>
-                <p class="contact-subtext">Fill in the blanks and I'll reply within 24 hours.</p>
-
                 <form id="contact-form" class="contact-form" action="/api/contact" method="POST">
                     <p class="contact-sentence">
                         Hi Ben, I'm
@@ -46,37 +49,59 @@
 
                     <div class="contact-actions">
                         <p class="form-status" role="status" aria-live="polite"></p>
-                        <button type="submit" class="cta-button">Send it &rarr;</button>
+                        <button type="submit" class="button button--large">Send it &rarr;</button>
                     </div>
                 </form>
 
                 <div id="sent" class="form-result">
-                    <h3>Sent. Thanks!</h3>
+                    <span class="form-result__icon" aria-hidden="true">&check;</span>
+                    <h2>Sent. Thanks!</h2>
                     <p>I'll get back to you <span class="sent-to">soon</span>.</p>
                 </div>
 
                 <div id="send-error" class="form-result">
-                    <h3>That didn't go through.</h3>
+                    <span class="form-result__icon" aria-hidden="true">!</span>
+                    <h2>That didn't go through.</h2>
                     <p>Sorry about that. Please email me directly at <a href="mailto:contact@benjafo.com">contact@benjafo.com</a>.</p>
                 </div>
 
-                <div class="contact-links contact-fallback">
+                <div class="contact-fallback">
                     <span>Rather use email?</span>
-                    <a href="mailto:contact@benjafo.com" class="email-link">contact@benjafo.com</a>
-                    <span class="separator">|</span>
-                    <a href="https://github.com/Benjafo" target="_blank">GitHub</a>
-                    <span class="separator">|</span>
-                    <a href="https://www.linkedin.com/in/benfoley9895/" target="_blank">LinkedIn</a>
+                    <a href="mailto:contact@benjafo.com">contact@benjafo.com</a>
+                    <a href="https://github.com/Benjafo" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://www.linkedin.com/in/benfoley9895/" target="_blank" rel="noopener">LinkedIn</a>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
-    <div class="footer">
-        <div class="container">
-            <p>&copy; 2025 Ben Foley. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="wrap site-footer__inner">
+            <div class="site-footer__brand">
+                <a class="site-footer__name" href="index.html">Ben Foley</a>
+                <p>Full stack web developer. Complete web applications, from concept to deployment.</p>
+            </div>
+            <nav aria-labelledby="footer-pages">
+                <h2 id="footer-pages">Pages</h2>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div>
+                <h2 id="footer-elsewhere">Elsewhere</h2>
+                <ul aria-labelledby="footer-elsewhere">
+                    <li><a href="mailto:contact@benjafo.com">contact@benjafo.com</a></li>
+                    <li><a href="https://github.com/Benjafo" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://www.linkedin.com/in/benfoley9895/" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
+        <div class="wrap site-footer__legal">
+            <p>&copy; 2026 Ben Foley</p>
+        </div>
+    </footer>
     <script src="contact.js" defer></script>
 </body>
 </html>

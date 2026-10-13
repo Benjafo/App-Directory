@@ -8,16 +8,16 @@ const button = form.querySelector('button[type="submit"]');
 const blanks = form.querySelectorAll('.contact-sentence input');
 const measure = document.createElement('canvas').getContext('2d');
 
-function textWidth(text, style, fontStyle) {
-    measure.font = `${fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+function textWidth(text, style, fontWeight) {
+    measure.font = `${style.fontStyle} ${fontWeight} ${style.fontSize} ${style.fontFamily}`;
     return measure.measureText(text).width;
 }
 
 function fitBlank(input) {
     const style = getComputedStyle(input);
-    // Placeholders are italic (see .contact-sentence input::placeholder)
-    const placeholder = textWidth(input.placeholder, style, 'italic');
-    const value = textWidth(input.value, style, style.fontStyle);
+    // Placeholders are set lighter than typed text (see .contact-sentence input::placeholder)
+    const placeholder = textWidth(input.placeholder, style, 500);
+    const value = textWidth(input.value, style, style.fontWeight);
     const padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
     input.style.width = `${Math.ceil(Math.max(placeholder, value) + padding) + 2}px`;
 }
