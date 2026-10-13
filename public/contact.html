@@ -1,164 +1,300 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact — Ben Foley</title>
-    <meta name="description" content="Get in touch with Ben Foley about your web application project. Share a few details and get a reply within 24 hours.">
-    <meta name="theme-color" content="#fbf7f1">
-    <link rel="preload" href="fonts/inter-700.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <meta
+      name="description"
+      content="Get in touch with Ben Foley about your web application project. Share a few details and get a reply within 48 hours."
+    />
+    <meta name="theme-color" content="#fbf7f1" />
+    <link
+      rel="preload"
+      href="fonts/inter-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-        <div class="wrap site-header__inner">
-            <a class="site-header__brand" href="index.html">Ben Foley</a>
-            <nav class="site-nav" aria-label="Main">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="contact.html" aria-current="page">Contact</a>
-            </nav>
-        </div>
+      <div class="wrap site-header__inner">
+        <a class="site-header__brand" href="index.html">Ben Foley</a>
+        <nav class="site-nav" aria-label="Main">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="contact.html" aria-current="page">Contact</a>
+        </nav>
+      </div>
     </header>
 
     <main id="main">
-        <section class="wrap page-head" aria-labelledby="page-title">
-            <nav class="label crumbs" aria-label="Breadcrumb">
-                <ol>
-                    <li><a href="index.html"><span class="crumbs__arrow" aria-hidden="true">&larr;</span>Home</a></li>
-                    <li aria-current="page">Contact</li>
-                </ol>
-            </nav>
-            <h1 id="page-title" class="page-head__title">Just reach out. It's that easy.</h1>
-            <p class="page-head__lead">Share a few details about your project and I'll be in touch within 24 hours.</p>
-        </section>
+      <section class="wrap page-head" aria-labelledby="page-title">
+        <nav class="label crumbs" aria-label="Breadcrumb">
+          <ol>
+            <li>
+              <a href="index.html"
+                ><span class="crumbs__arrow" aria-hidden="true">&larr;</span
+                >Home</a
+              >
+            </li>
+            <li aria-current="page">Contact</li>
+          </ol>
+        </nav>
+        <h1 id="page-title" class="page-head__title">
+          Just reach out. It's that easy.
+        </h1>
+        <p class="page-head__lead">
+          Share a few details about your project and I'll be in touch within 48
+          hours.
+        </p>
+      </section>
 
-        <section class="wrap contact-section" aria-label="Contact form">
-            <div class="contact-layout">
-                <div class="contact-wrap">
-                    <form id="contact-form" class="contact-form" action="/api/contact" method="POST">
-                        <div class="form-row">
-                            <div class="field">
-                                <label for="cf-name">Name</label>
-                                <input id="cf-name" type="text" name="name" autocomplete="name" maxlength="100" required>
-                            </div>
-                            <div class="field">
-                                <label for="cf-email">Email</label>
-                                <input id="cf-email" type="email" name="email" autocomplete="email" maxlength="254" required>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label for="cf-company">Company <span class="field__optional">(optional)</span></label>
-                            <input id="cf-company" type="text" name="company" autocomplete="organization" maxlength="100">
-                        </div>
-
-                        <fieldset class="field">
-                            <legend>Project type <span class="field__optional">(optional)</span></legend>
-                            <div class="chips">
-                                <label class="chip"><input type="radio" name="topic" value="New build"><span>New build</span></label>
-                                <label class="chip"><input type="radio" name="topic" value="Existing project"><span>Existing project</span></label>
-                                <label class="chip"><input type="radio" name="topic" value="Ongoing support"><span>Ongoing support</span></label>
-                                <label class="chip"><input type="radio" name="topic" value="Not sure yet"><span>Not sure yet</span></label>
-                            </div>
-                        </fieldset>
-
-                        <div class="field">
-                            <label for="cf-details">Project details</label>
-                            <p class="field__hint" id="cf-details-hint">A brief overview is enough: what you need and any timeline. No formal spec required.</p>
-                            <textarea id="cf-details" name="message" rows="5" maxlength="5000" required aria-describedby="cf-details-hint"></textarea>
-                        </div>
-
-                        <div class="hp" aria-hidden="true">
-                            <label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
-                        </div>
-
-                        <div class="contact-actions">
-                            <p class="form-status" role="status" aria-live="polite"></p>
-                            <button type="submit" class="button button--large">Send inquiry &rarr;</button>
-                        </div>
-                    </form>
-
-                    <div id="sent" class="form-result">
-                        <span class="form-result__icon" aria-hidden="true">&check;</span>
-                        <h2>Inquiry received.</h2>
-                        <p>Thank you<span class="sent-name"></span>. I'll reply<span class="sent-to"> by email</span> within 24 hours.</p>
-                    </div>
-
-                    <div id="send-error" class="form-result">
-                        <span class="form-result__icon" aria-hidden="true">!</span>
-                        <h2>That didn't go through.</h2>
-                        <p>Sorry about that. Please email me directly at <a href="mailto:contact@benjafo.com">contact@benjafo.com</a>.</p>
-                    </div>
+      <section class="wrap contact-section" aria-label="Contact form">
+        <div class="contact-layout">
+          <div class="contact-wrap">
+            <form
+              id="contact-form"
+              class="contact-form"
+              action="/api/contact"
+              method="POST"
+            >
+              <div class="form-row">
+                <div class="field">
+                  <label for="cf-name">Name</label>
+                  <input
+                    id="cf-name"
+                    type="text"
+                    name="name"
+                    autocomplete="name"
+                    maxlength="100"
+                    required
+                  />
                 </div>
+                <div class="field">
+                  <label for="cf-email">Email</label>
+                  <input
+                    id="cf-email"
+                    type="email"
+                    name="email"
+                    autocomplete="email"
+                    maxlength="254"
+                    required
+                  />
+                </div>
+              </div>
 
-                <aside class="contact-aside" aria-labelledby="next-heading">
-                    <h2 id="next-heading" class="label contact-aside__heading">What happens next</h2>
-                    <ol class="next-steps">
-                        <li>
-                            <span class="label next-steps__num" aria-hidden="true">01</span>
-                            <div>
-                                <h3>You send a short overview</h3>
-                                <p>A few lines is enough.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="label next-steps__num" aria-hidden="true">02</span>
-                            <div>
-                                <h3>I reply within 24 hours</h3>
-                                <p>With questions or next steps.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="label next-steps__num" aria-hidden="true">03</span>
-                            <div>
-                                <h3>We schedule a call</h3>
-                                <p>To scope the work. No commitment until then.</p>
-                            </div>
-                        </li>
-                    </ol>
+              <div class="field">
+                <label for="cf-company"
+                  >Company
+                  <span class="field__optional">(optional)</span></label
+                >
+                <input
+                  id="cf-company"
+                  type="text"
+                  name="company"
+                  autocomplete="organization"
+                  maxlength="100"
+                />
+              </div>
 
-                    <div class="contact-elsewhere">
-                        <p class="label">Rather connect elsewhere?</p>
-                        <ul>
-                            <li><a href="mailto:contact@benjafo.com">contact@benjafo.com</a></li>
-                            <li><a href="https://github.com/Benjafo" target="_blank" rel="noopener">GitHub</a></li>
-                            <li><a href="https://www.linkedin.com/in/benfoley9895/" target="_blank" rel="noopener">LinkedIn</a></li>
-                        </ul>
-                    </div>
-                </aside>
+              <fieldset class="field">
+                <legend>
+                  Project type <span class="field__optional">(optional)</span>
+                </legend>
+                <div class="chips">
+                  <label class="chip"
+                    ><input type="radio" name="topic" value="New build" /><span
+                      >New build</span
+                    ></label
+                  >
+                  <label class="chip"
+                    ><input
+                      type="radio"
+                      name="topic"
+                      value="Existing project"
+                    /><span>Existing project</span></label
+                  >
+                  <label class="chip"
+                    ><input
+                      type="radio"
+                      name="topic"
+                      value="Ongoing support"
+                    /><span>Ongoing support</span></label
+                  >
+                  <label class="chip"
+                    ><input
+                      type="radio"
+                      name="topic"
+                      value="Not sure yet"
+                    /><span>Not sure yet</span></label
+                  >
+                </div>
+              </fieldset>
+
+              <div class="field">
+                <label for="cf-details">Project details</label>
+                <p class="field__hint" id="cf-details-hint">
+                  Describe what you need and any timeline you have.
+                </p>
+                <textarea
+                  id="cf-details"
+                  name="message"
+                  rows="5"
+                  maxlength="5000"
+                  required
+                  aria-describedby="cf-details-hint"
+                ></textarea>
+              </div>
+
+              <div class="hp" aria-hidden="true">
+                <label
+                  >Leave this empty
+                  <input
+                    type="text"
+                    name="website"
+                    tabindex="-1"
+                    autocomplete="off"
+                /></label>
+              </div>
+
+              <div class="contact-actions">
+                <p class="form-status" role="status" aria-live="polite"></p>
+                <button type="submit" class="button button--large">
+                  Send inquiry &rarr;
+                </button>
+              </div>
+            </form>
+
+            <div id="sent" class="form-result">
+              <span class="form-result__icon" aria-hidden="true">&check;</span>
+              <h2>Inquiry received.</h2>
+              <p>
+                Thank you<span class="sent-name"></span>. I'll reply<span
+                  class="sent-to"
+                >
+                  by email</span
+                >
+                within 48 hours.
+              </p>
             </div>
-        </section>
+
+            <div id="send-error" class="form-result">
+              <span class="form-result__icon" aria-hidden="true">!</span>
+              <h2>That didn't go through.</h2>
+              <p>
+                Sorry about that. Please email me directly at
+                <a href="mailto:contact@benjafo.com">contact@benjafo.com</a>.
+              </p>
+            </div>
+          </div>
+
+          <aside class="contact-aside" aria-labelledby="next-heading">
+            <h2 id="next-heading" class="label contact-aside__heading">
+              What happens next
+            </h2>
+            <ol class="next-steps">
+              <li>
+                <span class="label next-steps__num" aria-hidden="true">01</span>
+                <div>
+                  <h3>You send a short overview</h3>
+                  <p>A few lines is enough.</p>
+                </div>
+              </li>
+              <li>
+                <span class="label next-steps__num" aria-hidden="true">02</span>
+                <div>
+                  <h3>I reply within 48 hours</h3>
+                  <p>With questions or next steps.</p>
+                </div>
+              </li>
+              <li>
+                <span class="label next-steps__num" aria-hidden="true">03</span>
+                <div>
+                  <h3>We schedule a call</h3>
+                  <p>To scope the work. No commitment until then.</p>
+                </div>
+              </li>
+            </ol>
+
+            <div class="contact-elsewhere">
+              <p class="label">Rather connect elsewhere?</p>
+              <ul>
+                <li>
+                  <a href="mailto:contact@benjafo.com">contact@benjafo.com</a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/Benjafo"
+                    target="_blank"
+                    rel="noopener"
+                    >GitHub</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/benfoley9895/"
+                    target="_blank"
+                    rel="noopener"
+                    >LinkedIn</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
-        <div class="wrap site-footer__inner">
-            <div class="site-footer__brand">
-                <a class="site-footer__name" href="index.html">Ben Foley</a>
-                <p>Full stack web developer. Complete web applications, from concept to deployment.</p>
-            </div>
-            <nav aria-labelledby="footer-pages">
-                <h2 id="footer-pages">Pages</h2>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-            <div>
-                <h2 id="footer-elsewhere">Elsewhere</h2>
-                <ul aria-labelledby="footer-elsewhere">
-                    <li><a href="mailto:contact@benjafo.com">contact@benjafo.com</a></li>
-                    <li><a href="https://github.com/Benjafo" target="_blank" rel="noopener">GitHub</a></li>
-                    <li><a href="https://www.linkedin.com/in/benfoley9895/" target="_blank" rel="noopener">LinkedIn</a></li>
-                </ul>
-            </div>
+      <div class="wrap site-footer__inner">
+        <div class="site-footer__brand">
+          <a class="site-footer__name" href="index.html">Ben Foley</a>
+          <p>
+            Full stack web developer. Complete web applications, from concept to
+            deployment.
+          </p>
         </div>
-        <div class="wrap site-footer__legal">
-            <p>&copy; 2026 Ben Foley</p>
+        <nav aria-labelledby="footer-pages">
+          <h2 id="footer-pages">Pages</h2>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 id="footer-elsewhere">Elsewhere</h2>
+          <ul aria-labelledby="footer-elsewhere">
+            <li>
+              <a href="mailto:contact@benjafo.com">contact@benjafo.com</a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/Benjafo"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/benfoley9895/"
+                target="_blank"
+                rel="noopener"
+                >LinkedIn</a
+              >
+            </li>
+          </ul>
         </div>
+      </div>
+      <div class="wrap site-footer__legal">
+        <p>&copy; 2026 Ben Foley</p>
+      </div>
     </footer>
     <script src="contact.js" defer></script>
-</body>
+  </body>
 </html>
