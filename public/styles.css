@@ -223,6 +223,20 @@ p:last-child { margin-bottom: 0; }
 .hero__links { display: flex; flex-wrap: wrap; gap: 0 2rem; margin-top: 2rem; }
 
 .page-head { padding-block: clamp(3.5rem, 10vw, 7rem) clamp(2.5rem, 6vw, 4rem); }
+/* Breadcrumb in the eyebrow slot: "← Home / About" */
+.crumbs ol { display: flex; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; }
+.crumbs li + li::before { content: "/"; margin-inline: 0.6em; color: var(--border-strong); }
+.crumbs a {
+    position: relative;
+    text-decoration: underline;
+    text-decoration-color: var(--border-strong);
+    text-underline-offset: 0.3em;
+}
+/* Grows the tap target to 44px without changing the line height */
+.crumbs a::before { content: ""; position: absolute; inset: -14px -10px; }
+.crumbs a:hover { color: var(--accent); text-decoration-color: currentColor; }
+.crumbs__arrow { display: inline-block; margin-right: 0.4em; }
+.crumbs [aria-current] { color: var(--ink); }
 .page-head__title {
     margin-top: 1.25rem;
     font-size: clamp(2.75rem, 1.5rem + 5vw, 5.25rem);
@@ -548,8 +562,9 @@ p:last-child { margin-bottom: 0; }
 .site-footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .site-footer__inner {
     display: grid;
-    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr);
-    gap: 2.5rem;
+    /* Brand takes the free space, so Pages and Elsewhere sit together on the right */
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 2.5rem clamp(3rem, 6vw, 5rem);
     padding-block: 3.5rem 2.5rem;
 }
 .site-footer__name {
@@ -608,6 +623,8 @@ p:last-child { margin-bottom: 0; }
 
 @media (prefers-reduced-motion: no-preference) {
     html { scroll-behavior: smooth; }
+    .crumbs__arrow { transition: transform 0.2s ease; }
+    .crumbs a:hover .crumbs__arrow { transform: translateX(-3px); }
     a, .button, .project-card, .contact-sentence input, .contact-form textarea {
         transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, text-decoration-color 0.15s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
